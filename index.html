@@ -3,34 +3,45 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Wearther App</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                margin: 0;
-                background-color: #f0f0f0;
-            }
-
-            .container {
-                text-align: center;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                background-color: #fff;
-            }
-        </style>
+        <title>Weather App</title>
+        <link rel="stylesheet" href="https://unpkg.com/98.css" />
     </head>
-    <body>
-        <div class="container">
-            <h1>Weather App</h1>
-            <p>Enter a city name to get the weather:</p>
-            <input type="text" id="cityInput" placeholder="Enter city name" />
-            <button onclick="getWeather()">Get Weather</button>
-            <div id="weatherInfo"></div>
+    <body style="background-color: #008080">
+        <div
+            class="window"
+            style="
+                width: 300px;
+                margin: 0 auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            "
+        >
+            <div class="title-bar">
+                <div class="title-bar-text">Weather App</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="row pad">
+                    <div class="col">
+                        <p>Enter a city name to get the weather:</p>
+                        <input
+                            type="text"
+                            id="cityInput"
+                            placeholder="Enter city name"
+                            class="input"
+                            onkeypress="if(event.key === 'Enter') getWeather()"
+                        />
+                        <button onclick="getWeather()" class="btn">
+                            Get Weather
+                        </button>
+                        <div id="weatherInfo"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <script>
@@ -45,10 +56,10 @@
                         const weatherInfo =
                             document.getElementById("weatherInfo");
                         weatherInfo.innerHTML = `
-          <h2>${data.name}</h2>
-          <p>${data.weather[0].description}</p>
-          <p>Temperature: ${data.main.temp}°C</p>
-          <p>Humidity: ${data.main.humidity}%</p>
+          <h3>${data.name}</h3>
+          <h3>${data.weather[0].description}</h3>
+          <h3>Temperature: ${data.main.temp}°F</h3>
+          <h3>Humidity: ${data.main.humidity}%</h3>
           `;
                     })
                     .catch((error) => {
